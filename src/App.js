@@ -3,7 +3,7 @@ import './App.css';
 import SpinningWheelContainer from './components/SpinningWheelContainer.js'
 
 function App() {
-  const items = ['Els','Paul','Hans','Nikki','Kees','Frank','Iris','Arianne','Tom','Cas','Helen']
+  const items = ['Els','Paul','Hans','Niki','Kees','Frank','Iris','Arianne','Tom','Cas','Helen']
   return (
     <div className="App">
       <header className="App-header">
