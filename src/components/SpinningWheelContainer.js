@@ -4,7 +4,7 @@ import './SpinningWheel.css'
 const SpinningWheelContainer = (props) => {
   const { items } = props;
   const [luckyItem, setLuckyItem] = React.useState([]);
-  const [wheelVars, setWheelVars] = React.useState({
+  const [wheelStyles, setWheelStyles] = React.useState({
       '--nb-item': items.length,
       '--selected-item': items.indexOf(luckyItem)
   });
@@ -20,7 +20,7 @@ const SpinningWheelContainer = (props) => {
   }
 
   React.useEffect(() => {
-    setWheelVars({
+    setWheelStyles({
       '--nb-item': items.length,
       '--selected-item': items.indexOf(luckyItem)
     })
@@ -29,7 +29,7 @@ const SpinningWheelContainer = (props) => {
   return(
     <>    
     <div className="wheel-container">
-        <div className="wheel spinning" style={wheelVars} onClick={startSpinning}>
+        <div className="wheel spinning" style={wheelStyles} onClick={startSpinning}>
           {items.map((item, index) => (
                         <div className="wheel-item" key={index} style={{ '--item-nb': index }}>
                           {item}
