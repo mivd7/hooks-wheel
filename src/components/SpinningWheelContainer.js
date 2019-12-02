@@ -10,11 +10,11 @@ const SpinningWheelContainer = (props) => {
   });
   const [spinning, setSpinning] = React.useState(false);
 
-  const startSpinning = () => {
+  const spinWheel = () => {
     setSpinning(true)
     setLuckyItem(items[Math.floor(Math.random() * items.length)]) 
     setTimeout(() => { 
-      setSpinning(false) 
+      setSpinning(false)
     }, props.spinningTime)
   }
 
@@ -23,18 +23,25 @@ const SpinningWheelContainer = (props) => {
       '--nb-item': items.length,
       '--selected-item': items.indexOf(luckyItem)
     })
-  }, [luckyItem, items])
+    setTimeout(() => setLuckyItem(''), props.spinningTime * 3)
+  }, [luckyItem, items, props])
 
   return(
     <>    
     <div className="wheel-container">
-        <div className="wheel spinning" style={wheelStyles} onClick={startSpinning}>
+        {luckyItem === '' ? <div className="wheel" style={wheelStyles} onClick={spinWheel}>
           {items.map((item, index) => (
                         <div className="wheel-item" key={index} style={{ '--item-nb': index }}>
                           {item}
                         </div>
                     ))}
-        </div>
+        </div> : <div className="wheel spinning" style={wheelStyles} onClick={spinWheel}>
+          {items.map((item, index) => (
+                        <div className="wheel-item" key={index} style={{ '--item-nb': index }}>
+                          {item}
+                        </div>
+                    ))}
+        </div>}
     </div>
     <div className="result">{luckyItem !== '' && !spinning && <p>{luckyItem}</p>}</div>
     </>
