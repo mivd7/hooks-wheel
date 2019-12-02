@@ -7,9 +7,9 @@ const SpinningWheelContainer = (props) => {
   const [luckyItems, setLuckyItems] = React.useState([]);
   const [wheelStyles, setWheelStyles] = React.useState({
       '--nb-item': items.length,
-      '--selected-item': items.indexOf(luckyItem)
+      '--selected-item': 0
   });
-  const [spinning, setSpinning] = React.useState(false);
+  const [spinning, setSpinning] = React.useState(null);
 
   const spinWheel = () => {
     setSpinning(true)
@@ -23,20 +23,20 @@ const SpinningWheelContainer = (props) => {
   console.log(luckyItems)
 
   React.useEffect(() => {
-    setWheelStyles({
-      '--nb-item': items.length,
-      '--selected-item': items.indexOf(luckyItem)
-    })
-    setTimeout(() => setLuckyItem(''), props.spinningTime * 2)
     if (luckyItem !== '') {
-      setLuckyItems(luckyItems => [...luckyItems, luckyItem])
+      setWheelStyles({
+        '--nb-item': items.length,
+        '--selected-item': items.indexOf(luckyItem)
+      })
+      setLuckyItems(luckyItems => luckyItems.indexOf(luckyItem) !== -1 ? luckyItems : [...luckyItems, luckyItem])
     }
   }, [luckyItem, items, props])
 
+  console.log(spinning)
   return(
     <>    
     <div className="wheel-container">
-        {luckyItem === '' ? <div className="wheel" style={wheelStyles} onClick={spinWheel}>
+        {spinning === false ? <div className="wheel" style={wheelStyles} onClick={spinWheel}>
           {items.map((item, index) => (
                         <div className="wheel-item" key={index} style={{ '--item-nb': index }}>
                           {item}
@@ -50,7 +50,7 @@ const SpinningWheelContainer = (props) => {
                     ))}
         </div>}
     </div>
-    <div className="result">{luckyItem !== '' && !spinning && <p>{luckyItem}</p>}</div>
+    <div className="result">{!spinning && <p>{luckyItem}</p>}</div>
     </>
   )
 }
