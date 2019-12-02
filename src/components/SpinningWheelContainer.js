@@ -4,6 +4,7 @@ import './SpinningWheel.css'
 const SpinningWheelContainer = (props) => {
   const { items } = props;
   const [luckyItem, setLuckyItem] = React.useState('');
+  const [luckyItems, setLuckyItems] = React.useState([]);
   const [wheelStyles, setWheelStyles] = React.useState({
       '--nb-item': items.length,
       '--selected-item': items.indexOf(luckyItem)
@@ -13,17 +14,23 @@ const SpinningWheelContainer = (props) => {
   const spinWheel = () => {
     setSpinning(true)
     setLuckyItem(items[Math.floor(Math.random() * items.length)]) 
+
     setTimeout(() => { 
       setSpinning(false)
     }, props.spinningTime)
   }
+
+  console.log(luckyItems)
 
   React.useEffect(() => {
     setWheelStyles({
       '--nb-item': items.length,
       '--selected-item': items.indexOf(luckyItem)
     })
-    setTimeout(() => setLuckyItem(''), props.spinningTime * 3)
+    setTimeout(() => setLuckyItem(''), props.spinningTime * 2)
+    if (luckyItem !== '') {
+      setLuckyItems(luckyItems => [...luckyItems, luckyItem])
+    }
   }, [luckyItem, items, props])
 
   return(
