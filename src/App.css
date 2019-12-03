@@ -1,13 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Monoton&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower|Monoton&display=swap');
+
 .App {
+  font-family: 'Indie Flower', cursive;
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
+  background-image: url('./assets/computerpiet.jpg');
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -15,6 +12,33 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+.App-header--container {
+  height: 100px;
+  padding: 25px;
+  margin-bottom: 50px;
+}
+.App-header {
+  font-family: 'Monoton', cursive;
+  color: yellow;
+  font-size: 48px;
+  text-align: center;
+}
+.App-header__sub {
+  position: absolute;
+  top: 100px;
+  left: 25%;
+  font-size: 32px;
+  font-weight: 700;
+  color:#FA5D1F;
+}
+
+.App-body_wheel {
+  margin-top: 50px;
 }
 
 .App-link {

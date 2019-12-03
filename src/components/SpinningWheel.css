@@ -1,5 +1,5 @@
 :root {
-  --wheel-font: 'Lato', 'Quicksand', sans-serif;
+  --wheel-font: 'Indie Flower', cursive;
   --wheel-size: 300px;
   --wheel-slice-spacing: 25px;
   --wheel-border-size: 5px;
@@ -11,7 +11,7 @@
   --selected-item: 0;
   --nb-turn: 5;
   --spinning-duration: 4s;
-  --reset-duration: 10s;
+  --reset-duration: 8s;
 }
 
 .wheel-container {
@@ -26,6 +26,7 @@
   border: solid var(--wheel-color) 3px;
   border-radius: 50%;
   user-select: none;
+  margin-top: 25px;
 }
 .result {
   margin-top: 50px;
@@ -100,7 +101,7 @@
   width: 50%;
   transform-origin: center left;
   transform: translateY(-50%) rotate(calc(var(--item-nb) * (360deg / var(--nb-item, 1))));
-  font-size: 24px;
+  font-size: 20px;
   color: var(--neutral-color);
   text-align: right;
   padding: 0 25px 0 50px;
