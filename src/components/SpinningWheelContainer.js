@@ -1,5 +1,7 @@
 import React from 'react'
 import './SpinningWheel.css'
+import ContentDialog from './ContentDialog'
+import {selectPoem} from '../lib/poems';
 
 const SpinningWheelContainer = (props) => {
   const { items } = props;
@@ -10,7 +12,7 @@ const SpinningWheelContainer = (props) => {
       '--selected-item': 0
   });
   const [spinning, setSpinning] = React.useState(null);
-
+  const [dialog, setDialog] = React.useState({})
   const spinWheel = () => {
     setSpinning(true)
     setLuckyItem(items[Math.floor(Math.random() * items.length)]) 
@@ -19,8 +21,6 @@ const SpinningWheelContainer = (props) => {
       setSpinning(false)
     }, props.spinningTime)
   }
-
-  console.log(luckyItems)
 
   React.useEffect(() => {
     if (luckyItem !== '') {
@@ -32,7 +32,13 @@ const SpinningWheelContainer = (props) => {
     }
   }, [luckyItem, items, props])
 
-  console.log(spinning)
+  React.useEffect(() => {
+    const newItem = [...luckyItems].pop()
+    console.log(luckyItems)
+    setDialog({
+      subject: newItem,
+    })
+  }, [luckyItems])
   return(
     <>    
     <div className="wheel-container">
@@ -49,8 +55,9 @@ const SpinningWheelContainer = (props) => {
                         </div>
                     ))}
         </div>}
+        {!spinning && <ContentDialog title={`Beste ${luckyItem}`} isOpened={luckyItem !== '' ? true : false} content={selectPoem(dialog.subject)}/>}
     </div>
-    <div className="result">{!spinning && <p>{luckyItem}</p>}</div>
+    
     </>
   )
 }

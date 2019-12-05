@@ -95,13 +95,12 @@
   display: block;
   position: absolute;
   box-sizing: border-box;
-
   top: 50%;
   left: 50%;
   width: 50%;
   transform-origin: center left;
   transform: translateY(-50%) rotate(calc(var(--item-nb) * (360deg / var(--nb-item, 1))));
-  font-size: 20px;
+  font-size: 22px;
   color: var(--neutral-color);
   text-align: right;
   padding: 0 25px 0 50px;
